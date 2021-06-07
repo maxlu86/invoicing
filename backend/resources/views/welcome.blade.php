@@ -295,6 +295,10 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
+                <router-link class="dropdown-item" to="/user/company">
+                  <i class="fas fa-building fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Company
+                </router-link>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
