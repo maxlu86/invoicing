@@ -17,13 +17,13 @@
 
                         <div class="form-group form-row">
                             <div class="col-md-2">
-                                <img src="form.logo" style="height: 50px; width: auto;"> 
+                                <img :src="form.logo" style="height: 50px; width: auto;"> 
                                 <small class="text-danger" v-if="errors.logo"> {{ errors.logo[0] }} </small>                
                             </div> 
 
                             <div class="col-md-4">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <input type="file" class="custom-file-input" id="customFile" @change="onFileSelected">
                                     <label class="custom-file-label" for="customFile">Choose logo</label>
                                 </div>                    
                             </div>      
@@ -170,18 +170,30 @@
     },
     methods:{
         userCompanyIncert() {
-            axios.post('/api/auth/signup', this.form)
-            .then(res => {
-                User.responseAfterLogin(res)
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Signed in successfully'
-                })
-                this.$router.push({ name: 'home'})
+            axios.post('/api/user/company', this.form)
+            .then(() => {
+                this.$router.push({ name: 'usercompany'})
+                Notification.success()
             })
             .catch(error => this.errors = error.response.data.errors)
             
-        }
+        },
+        
+        onFileSelected(event) {
+            let file = event.target.files[0];
+            if (file.size > 1048770) {
+                Notification.image_validation()
+            }
+            else {
+                let reader = new FileReader();
+                reader.onload = event =>{
+                    this.form.logo = event.target.result
+                    console.log(event.target.result)
+                };
+            reader.readAsDataURL(file);
+            }
+        },
+
     }
       
   }

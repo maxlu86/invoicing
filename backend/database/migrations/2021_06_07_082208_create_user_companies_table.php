@@ -27,7 +27,7 @@ class CreateUserCompaniesTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('street_1');
-            $table->string('street_2');
+            $table->string('street_2')->nullable();
             $table->string('zip_code');
             $table->string('city');
             $table->string('state')->nullable();
