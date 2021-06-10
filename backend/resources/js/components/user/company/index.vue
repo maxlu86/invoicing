@@ -3,7 +3,9 @@
     <div class="row">
         <router-link to="/user/company/create" class="btn btn-primary">Add Company</router-link>
     </div>
-    <br><br>
+    <br>
+    <input type="text" v-model="searchTerm" class="form-control" placeholder="Search..." style="width: 300px">
+    <br>
         <div class="row">
             <div class="col-lg-12 mb-4">
               <!-- Simple Tables -->
@@ -24,13 +26,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="user_company in user_companies" :key="user_company.id">
+                      <tr v-for="user_company in filtersearch" :key="user_company.id">
                         <td>{{ user_company.id }}</td>
                         <td><img :src="'../'+user_company.logo" id="uc_logo"></td>
                         <td>{{ user_company.company_name }}</td>
                         <td>{{ user_company.vat_number }}</td>
                         <td>{{ user_company.city }}</td>
-                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                        <td>
+                            <router-link :to="{name:'usercompany-edit',params:{id:user_company.id}}" class="btn btn-sm btn-primary">Edit</router-link>
+                            <a @click="deleteUserCompany(user_company.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -54,15 +59,52 @@
     data() {
         return {
             user_companies:[],
+            searchTerm:''
             
         }
     },
+    computed: {
+        filtersearch() {
+            return this.user_companies.filter(user_company => {
+                return user_company.company_name.match(this.searchTerm)
+            })
+        }
+    },
+
     methods:{
         allUserCompanies() {
             axios.get('/api/user/company')
             .then(({data}) => (this.user_companies = data))
-            .catch(error => this.errors = error.response.data.errors)
-            
+            .catch(error => this.errors = error.response.data.errors)  
+        },
+        deleteUserCompany(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete('/api/user/company/'+id)
+                    .then(() => {
+                        this.user_companies = this.user_companies.filter(user_company => {
+                        return user_company.id != id
+                        })
+                    })
+                    .catch(() => {
+                        this.$router.push({company_name: 'company'})
+                    })
+
+                    Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    )
+                }
+            })
         }
     },
 

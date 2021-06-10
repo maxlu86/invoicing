@@ -13,6 +13,7 @@
   <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -40,46 +41,43 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="far fa-fw fa-window-maximize"></i>
-          <span>Bootstrap UI</span>
+          <i class="fas fa-fw fa-address-book"></i>
+          <span>Contacts</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Bootstrap UI</h6>
-            <a class="collapse-item" href="alerts.html">Alerts</a>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-            <a class="collapse-item" href="modals.html">Modals</a>
-            <a class="collapse-item" href="popovers.html">Popovers</a>
-            <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
+            <router-link to="" class="collapse-item" >All Contacts</router-link>
+            <router-link to="" class="collapse-item" href="buttons.html">Clients</router-link>
+            <router-link to="" class="collapse-item" href="dropdowns.html">Suppliers</router-link>
+            <router-link to="" class="collapse-item" href="modals.html">Add new</router-link>
           </div>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm">
-          <i class="fab fa-fw fa-wpforms"></i>
-          <span>Forms</span>
+          <i class="fas fa-fw fa-piggy-bank"></i>
+          <span>Sales</span>
         </a>
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Forms</h6>
-            <a class="collapse-item" href="form_basics.html">Form Basics</a>
-            <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
+            <router-link to="" class="collapse-item" >Invoices</router-link>
+            <router-link to="" class="collapse-item" href="buttons.html">Offers</router-link>
+            <router-link to="" class="collapse-item" href="dropdowns.html">Proforma invoices</router-link>
           </div>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span>
+          <i class="fas fa-fw fa-boxes"></i>
+          <span>Products</span>
         </a>
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-            <a class="collapse-item" href="datatables.html">DataTables</a>
+            <router-link to="" class="collapse-item" >Products</router-link>
+            <router-link to="" class="collapse-item" href="buttons.html">Services</router-link>
+            <router-link to="" class="collapse-item" href="dropdowns.html">Inventory</router-link>
           </div>
         </div>
       </li>
@@ -351,7 +349,9 @@
   <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{ asset('backend/js/ruang-admin.min.js')}}"></script>
   <script src="{{ asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{ asset('backend/js/demo/chart-area-demo.js')}}"></script>  
+  <script src="{{ asset('backend/js/demo/chart-area-demo.js')}}"></script> 
+  <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script> 
 </body>
 
 </html>

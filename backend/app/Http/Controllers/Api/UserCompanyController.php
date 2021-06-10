@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserCompany;
 use Image;
+use DB;
 
 class UserCompanyController extends Controller
 {
@@ -93,7 +94,8 @@ class UserCompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_company = DB::table('user_companies')->where('id', $id)->first();
+        return response()->json($user_company);
     }
 
     /**
@@ -105,7 +107,45 @@ class UserCompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['company_name'] = $request->company_name;
+        $data['id_number'] = $request->id_number;
+        $data['display_name'] = $request->display_name;
+        $data['vat_number'] = $request->vat_number;
+        $data['email'] = $request->email;
+        $data['phone'] = $request->phone;
+        $data['street_1'] = $request->street_1;
+        $data['street_2'] = $request->street_2;
+        $data['zip_code'] = $request->zip_code;
+        $data['city'] = $request->city;
+        $data['state'] = $request->state;
+        $data['web_page'] = $request->web_page;
+        $image = $request->newlogo;
+
+        if ($image) {
+            $position = strpos($image, ';');
+            $sub = substr($image, 0, $position);
+            $ext = explode('/', $sub)[1];
+            $name = time().".".$ext;
+            $img = Image::make($image)->
+                resize(null, 100, function ($constraint) {
+                $constraint->aspectRatio();
+                });;
+            $upload_path = 'backend/usercompany/';
+            $image_url = $upload_path.$name;
+            $success = $img->save($image_url);
+            if ($success) {
+                $data['logo'] = $image_url;
+                $img = DB::table('user_companies')->where('id', $id)->first();
+                $image_path = $img->logo;
+                $done = unlink($image_path);
+                $user_company = DB::table('user_companies')->where('id', $id)->update($data);
+            } 
+        }else {
+            $oldlogo = $request->logo;
+            $data['logo'] = $oldlogo;
+            $user_company = DB::table('user_companies')->where('id', $id)->update($data);
+        }
     }
 
     /**
@@ -116,6 +156,14 @@ class UserCompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user_company = DB::table('user_companies')->where('id', $id)->first();
+        $logo = $user_company->logo;
+        if ($logo) {
+            unlink($logo);
+            DB::table('user_companies')->where('id', $id)->delete();
+        }
+        else{
+            DB::table('user_companies')->where('id', $id)->delete();
+        }
     }
 }
