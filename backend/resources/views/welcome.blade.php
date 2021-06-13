@@ -46,10 +46,10 @@
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <router-link to="" class="collapse-item" >All Contacts</router-link>
-            <router-link to="" class="collapse-item" href="buttons.html">Clients</router-link>
-            <router-link to="" class="collapse-item" href="dropdowns.html">Suppliers</router-link>
-            <router-link to="" class="collapse-item" href="modals.html">Add new</router-link>
+            <router-link to="/client" class="collapse-item" >All Contacts</router-link>
+            <router-link to="" class="collapse-item" >Clients</router-link>
+            <router-link to="" class="collapse-item" >Suppliers</router-link>
+            <router-link to="/client/create" class="collapse-item" >Add new</router-link>
           </div>
         </div>
       </li>
@@ -99,8 +99,8 @@
         </a>
         <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Example Pages</h6>
-            <a class="collapse-item" href="login.html">Login</a>
+            <h6 class="collapse-header">Settings</h6>
+            <router-link to="/client-category" class="collapse-item">ContactCategories</router-link>
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="404.html">404 Page</a>
             <a class="collapse-item" href="blank.html">Blank Page</a>

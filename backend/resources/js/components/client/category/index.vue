@@ -1,7 +1,7 @@
 <template>
     <div>
     <div class="row">
-        <router-link to="/user/company/create" class="btn btn-primary">Add Company</router-link>
+        <router-link to="/client-category/create" class="btn btn-primary">Add Category</router-link>
     </div>
     <br>
     <input type="text" v-model="searchTerm" class="form-control" placeholder="Search..." style="width: 300px">
@@ -11,30 +11,23 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">User's companies list</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Clients/Contacts categories</h6>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
-                        <th>Company ID</th>
-                        <th>Logo</th>
-                        <th>Company name</th>
-                        <th>VAT</th>
-                        <th>City</th>
+                        <th>Category name</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="user_company in filtersearch" :key="user_company.id">
-                        <td>{{ user_company.id }}</td>
-                        <td><img :src="'../'+user_company.logo" id="uc_logo"></td>
-                        <td>{{ user_company.company_name }}</td>
-                        <td>{{ user_company.vat_number }}</td>
-                        <td>{{ user_company.city }}</td>
+                      <tr v-for="client_category in filtersearch" :key="client_category.id">
+                        <td>{{ client_category.category_name }}</td>
+
                         <td>
-                            <router-link :to="{name:'usercompany-edit',params:{id:user_company.id}}" class="btn btn-sm btn-primary">Edit</router-link>
-                            <a @click="deleteUserCompany(user_company.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
+                            <router-link :to="{name:'clientcategoryedit',params:{id:client_category.id}}" class="btn btn-sm btn-primary">Edit</router-link>
+                            <a @click="deleteClientCategory(client_category.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
                         </td>
                       </tr>
                     </tbody>
@@ -58,26 +51,26 @@
 
     data() {
         return {
-            user_companies:[],
+            client_categories:[],
             searchTerm:''
             
         }
     },
     computed: {
         filtersearch() {
-            return this.user_companies.filter(user_company => {
-                return user_company.company_name.match(this.searchTerm)
+            return this.client_categories.filter(client_category => {
+                return client_category.category_name.match(this.searchTerm)
             })
         }
     },
 
     methods:{
-        allUserCompanies() {
-            axios.get('/api/user/company')
-            .then(({data}) => (this.user_companies = data))
+        allClientCategories() {
+            axios.get('/api/client-category')
+            .then(({data}) => (this.client_categories = data))
             .catch(error => this.errors = error.response.data.errors)  
         },
-        deleteUserCompany(id) {
+        deleteClientCategory(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -88,19 +81,19 @@
                 confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete('/api/user/company/'+id)
+                    axios.delete('/api/client-category/'+id)
                     .then(() => {
-                        this.user_companies = this.user_companies.filter(user_company => {
-                        return user_company.id != id
+                        this.client_categories = this.client_categories.filter(client_category => {
+                        return client_category.id != id
                         })
                     })
                     .catch(() => {
-                        this.$router.push({name: 'company'})
+                        this.$router.push({name: 'clientcategory'})
                     })
 
                     Swal.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'Your record has been deleted.',
                     'success'
                     )
                 }
@@ -109,7 +102,7 @@
     },
 
     created() {
-        this.allUserCompanies();
+        this.allClientCategories();
     }
       
   }
