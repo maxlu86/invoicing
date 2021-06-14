@@ -75,18 +75,31 @@
         </a>
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <router-link to="" class="collapse-item" >Products</router-link>
+            <router-link to="/product" class="collapse-item" >Products</router-link>
             <router-link to="" class="collapse-item" href="buttons.html">Services</router-link>
             <router-link to="" class="collapse-item" href="dropdowns.html">Inventory</router-link>
           </div>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="ui-colors.html">
-          <i class="fas fa-fw fa-palette"></i>
-          <span>UI Colors</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDocuments" aria-expanded="true"
+          aria-controls="collapseDocuments">
+          <i class="fas fa-fw fa-file-alt"></i>
+          <span>Documents</span>
         </a>
+        <div id="collapseDocuments" class="collapse" aria-labelledby="headingDocuments" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <router-link to="/document/create" class="collapse-item" >Add New Document</router-link>
+            <router-link to="/document" class="collapse-item" >All Documents</router-link>
+            <router-link to="" class="collapse-item" >Invoices</router-link>
+            <router-link to="" class="collapse-item" >Offers</router-link>
+            <router-link to="" class="collapse-item" >Proformas</router-link>
+            <router-link to="" class="collapse-item" >Delivery notes</router-link>
+            <router-link to="" class="collapse-item" >Amending invoices</router-link>
+          </div>
+        </div>
       </li>
+
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Examples

@@ -38,3 +38,5 @@ Route::apiResource('/user/company', 'App\Http\Controllers\Api\UserCompanyControl
 Route::apiResource('/client', 'App\Http\Controllers\Api\ClientController');
 Route::apiResource('/client-category', 'App\Http\Controllers\Api\ClientCategoryController');
 Route::apiResource('/product', 'App\Http\Controllers\Api\ProductController');
+Route::apiResource('/line', 'App\Http\Controllers\Api\LineController');
+Route::apiResource('/document', 'App\Http\Controllers\Api\DocumentController');

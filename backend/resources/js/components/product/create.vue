@@ -1,7 +1,7 @@
 <template>
     <div>
     <div class="row">
-        <router-link to="/client" class="btn btn-primary">All Clients</router-link>
+        <router-link to="/product" class="btn btn-primary">All products</router-link>
     </div>
     <div class="row justify-content-center">
       <div class="col-xl-10 col-lg-12 col-md-9">
@@ -11,168 +11,108 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Create Client</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Create product</h1>
                   </div>
-                    <form class="user" @submit.prevent="clientIncert" enctype="multipart/form-data">
+                    <form class="user" @submit.prevent="productIncert" enctype="multipart/form-data">
                         
                         <div class="form-group form-row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="CompanyType" 
-                                    placeholder="Enter Company type*" v-model="form.company_type">
-                                <small class="text-danger" v-if="errors.company_type"> {{ errors.company_type[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="InternalNotes" 
-                                    placeholder="Internal notes" v-model="form.internal_notes">
-                                <small class="text-danger" v-if="errors.internal_notes"> {{ errors.internal_notes[0] }} </small>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="CompanyName" 
-                                    placeholder="Enter Company name" v-model="form.name">
+                                <input type="text" class="form-control" id="name" 
+                                    placeholder="Name" v-model="form.name">
                                 <small class="text-danger" v-if="errors.name"> {{ errors.name[0] }} </small>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="VatNumber" 
-                                    placeholder="VAT number" v-model="form.vat_number">
-                                <small class="text-danger" v-if="errors.vat_number"> {{ errors.vat_number[0] }} </small>
+                                <input type="text" class="form-control" id="sku" 
+                                    placeholder="SKU" v-model="form.sku">
+                                <small class="text-danger" v-if="errors.sku"> {{ errors.sku[0] }} </small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group form-row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="description" 
+                                    placeholder="Description" v-model="form.description">
+                                <small class="text-danger" v-if="errors.description"> {{ errors.description[0] }} </small>
                             </div>
                         </div>
 
                         <div class="form-group form-row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="IdNumber" 
-                                    placeholder="Internal ID number" v-model="form.id_number">
-                                <small class="text-danger" v-if="errors.id_number"> {{ errors.id_number[0] }} </small>
+                                <input type="text" class="form-control" id="sales_account" 
+                                    placeholder="Sales Account" v-model="form.sales_account">
+                                <small class="text-danger" v-if="errors.sales_account"> {{ errors.sales_account[0] }} </small>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="DisplayName" 
-                                    placeholder="Display Name" v-model="form.display_name">
-                                <small class="text-danger" v-if="errors.display_name"> {{ errors.display_name[0] }} </small>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" id="Email" 
-                                    placeholder="Company Email address" v-model="form.email">
-                                <small class="text-danger" v-if="errors.email"> {{ errors.email[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="Phone" 
-                                    placeholder="Phone number" v-model="form.phone">
-                                <small class="text-danger" v-if="errors.phone"> {{ errors.phone[0] }} </small>
+                                <input type="text" class="form-control" id="sales_tax" 
+                                    placeholder="Sales tax" v-model="form.sales_tax">
+                                <small class="text-danger" v-if="errors.sales_tax"> {{ errors.sales_tax[0] }} </small>
                             </div>
                         </div>
 
                         <div class="form-group form-row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="Street1" 
-                                    placeholder="Street field 1" v-model="form.street_1">
-                                <small class="text-danger" v-if="errors.street_1"> {{ errors.street_1[0] }} </small>
+                                <input type="text" class="form-control" id="unit_price" 
+                                    placeholder="Unit price" v-model="form.unit_price">
+                                <small class="text-danger" v-if="errors.unit_price"> {{ errors.unit_price[0] }} </small>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="Street2" 
-                                    placeholder="Street field 2" v-model="form.street_2">
-                                <small class="text-danger" v-if="errors.street_2"> {{ errors.street_2[0] }} </small>
+                                <input type="text" class="form-control" id="total" 
+                                    placeholder="Total" v-model="form.total">
+                                <small class="text-danger" v-if="errors.total"> {{ errors.total[0] }} </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="barcode" 
+                                    placeholder="barcode" v-model="form.barcode">
+                                <small class="text-danger" v-if="errors.barcode"> {{ errors.barcode[0] }} </small>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="factory_code" 
+                                    placeholder="Factory code" v-model="form.factory_code">
+                                <small class="text-danger" v-if="errors.factory_code"> {{ errors.factory_code[0] }} </small>
                             </div>
                         </div>
 
                         <div class="form-group form-row">
                             <div class="col-md-4">
-                                <input type="text" class="form-control" id="ZipCode" 
-                                    placeholder="Zip code" v-model="form.zip_code">
-                                <small class="text-danger" v-if="errors.zip_code"> {{ errors.zip_code[0] }} </small>
+                                <input type="text" class="form-control" id="weight" 
+                                    placeholder="Weight" v-model="form.weight">
+                                <small class="text-danger" v-if="errors.weight"> {{ errors.weight[0] }} </small>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="City" 
-                                    placeholder="City" v-model="form.city">
-                                <small class="text-danger" v-if="errors.city"> {{ errors.city[0] }} </small>
+                                <input type="text" class="form-control" id="product_quantity" 
+                                    placeholder="Product quantity" v-model="form.product_quantity">
+                                <small class="text-danger" v-if="errors.product_quantity"> {{ errors.product_quantity[0] }} </small>
                             </div>
                         </div>
 
                         <div class="form-group form-row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="State" 
-                                    placeholder="State" v-model="form.state">
-                                <small class="text-danger" v-if="errors.state"> {{ errors.state[0] }} </small>
+                                <input type="text" class="form-control" id="unit_cost" 
+                                    placeholder="Unit cost" v-model="form.unit_cost">
+                                <small class="text-danger" v-if="errors.unit_cost"> {{ errors.unit_cost[0] }} </small>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="Country" 
-                                    placeholder="Country" v-model="form.country">
-                                <small class="text-danger" v-if="errors.country"> {{ errors.country[0] }} </small>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="Discount" 
-                                    placeholder="Discount" v-model="form.discount">
-                                <small class="text-danger" v-if="errors.discount"> {{ errors.discount[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="WebPage" 
-                                    placeholder="Web Page" v-model="form.web_page">
-                                <small class="text-danger" v-if="errors.web_page"> {{ errors.web_page[0] }} </small>
-                            </div>
-                        </div>   
-
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="PaymentMethod" 
-                                    placeholder="Payment method" v-model="form.payment_method">
-                                <small class="text-danger" v-if="errors.payment_method"> {{ errors.payment_method[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="SalesAccount" 
-                                    placeholder="Sales Account" v-model="form.sales_account">
-                                <small class="text-danger" v-if="errors.sales_account"> {{ errors.sales_account[0] }} </small>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="PurchaseAccount" 
-                                    placeholder="Purchase account" v-model="form.purchase_account">
-                                <small class="text-danger" v-if="errors.purchase_account"> {{ errors.purchase_account[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="Reference" 
-                                    placeholder="Reference" v-model="form.reference">
-                                <small class="text-danger" v-if="errors.reference"> {{ errors.reference[0] }} </small>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="DueDate" 
-                                    placeholder="Due date" v-model="form.due_date">
-                                <small class="text-danger" v-if="errors.due_date"> {{ errors.due_date[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="PaymentDay" 
-                                    placeholder="Payment day" v-model="form.payment_day">
-                                <small class="text-danger" v-if="errors.payment_day"> {{ errors.payment_day[0] }} </small>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="SalesTax" 
-                                    placeholder="Sales tax" v-model="form.sales_tax">
-                                <small class="text-danger" v-if="errors.sales_tax"> {{ errors.sales_tax[0] }} </small>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="PurchaseTax" 
-                                    placeholder="Purchase Tax" v-model="form.purchase_tax">
+                                <input type="text" class="form-control" id="purchase_tax" 
+                                    placeholder="Purchase tax" v-model="form.purchase_tax">
                                 <small class="text-danger" v-if="errors.purchase_tax"> {{ errors.purchase_tax[0] }} </small>
                             </div>
                         </div>
+
+                        <div class="form-group form-row">
+                            <div class="col-md-8">
+                                <label for="selectSupplier">Supplier</label>
+                                <select class="form-control" id="selectSupplier" v-model="form.client_id">
+                                    <option v-for="supplier in suppliers" :value="supplier.id" :key="supplier.id">{{ supplier.name }}</option>
+                                </select>
+                            </div>
+                          
+                        </div>   
                                              
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Add Company</button>
+                            <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                         </div>
                         <hr>
                        
@@ -200,49 +140,45 @@
         return {
             form:{
 
-                company_type: null,
                 name: null,
-                id_number: null,
-                display_name: null,
-                vat_number: null,
-                email:null,
-                phone:null,
-                street_1: null,
-                street_2: null,
-                zip_code: null,
-                city: null,
-                state: null,
-                country: null,
-                internal_notes: null,
-                web_page: null,
-                payment_method: null,
+                sku: null,
+                description: null,
                 sales_account: null,
-                purchase_account: null,
-                reference: null,
-                due_date: null,
-                discount: null,
-                payment_day: null,
-                sales_tax: null,
+                sales_tax:null,
+                unit_price: null,
+                total:null,
+                barcode: null,
+                factory_code: null,
+                weight: null,
+                product_quantity: null,
+                client_id: null,
                 purchase_tax: null,
+                unit_cost: null,
+
                 },
 
-            errors:{
-
-            },
+            errors:{},
+            suppliers:{},
         }
     },
     methods:{
-        clientIncert() {
-            axios.post('/api/client', this.form)
+        productIncert() {
+            axios.post('/api/product', this.form)
             .then(() => {
-                this.$router.push({ name: 'client'})
+                this.$router.push({ name: 'product'})
                 Notification.success()
             })
             .catch(error => this.errors = error.response.data.errors)
             
         },
 
-    }
+    },
+
+    created(){
+         axios.get('/api/client')
+            .then(({data}) => (this.suppliers = data))
+            .catch(error => this.errors = error.response.data.errors)  
+    },
       
   }
 </script>

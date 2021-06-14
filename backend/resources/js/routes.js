@@ -22,6 +22,10 @@ let productcreate = require('./components/product/create.vue').default;
 let product = require('./components/product/index.vue').default;
 let productedit = require('./components/product/edit.vue').default;
 
+let documentcreate = require('./components/document/create.vue').default;
+let document = require('./components/document/index.vue').default;
+let documentedit = require('./components/document/edit.vue').default;
+
 export const routes = [
     { path: '/', component: login, name: '/'},
     { path: '/register', component: register, name: 'register'},
@@ -48,5 +52,10 @@ export const routes = [
     { path: '/product/create', component: productcreate, name: 'productcreate'},
     { path: '/product', component: product, name: 'product'},
     { path: '/product/edit/:id', component: productedit, name: 'productedit'},
+
+    //Documents
+    { path: '/document/create', component: documentcreate, name: 'documentcreate'},
+    { path: '/document', component: document, name: 'document'},
+    { path: '/document/edit/:id', component: documentedit, name: 'documentedit'},
     
 ]
